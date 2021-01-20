@@ -1,29 +1,34 @@
-//package com.booking.model;
-//
-//import lombok.Getter;
-//import lombok.NoArgsConstructor;
-//import lombok.Setter;
-//
-//import javax.persistence.*;
-//import java.util.Date;
-//import java.util.Set;
-//
-//@NoArgsConstructor
-//@Getter
-//@Setter
-//@Table(name="customer")
-//@Entity
-//public class Customer {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private long id;
-//    private String name;
-//    private int age;
-//    private long balance;
-//    @OneToMany(mappedBy = "BookingHistory", fetch = FetchType.LAZY,
-//    cascade = CascadeType.ALL)
-//    private Set<BookingHistory> histories;
-//    private Date bookingDate;
-//
-//}
+``package com.booking.model;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name="customer")
+@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private Date birthDate;
+    private Long balance;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+    private LocalDateTime deleted;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = SectorType.class)
+    private List<Customer> c = new ArrayList<>();
+
+}

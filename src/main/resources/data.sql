@@ -15,8 +15,20 @@ VALUES (1, 0, 5, 34, 0),
        (7, 0, 3, 34, 2),
        (8, 1, 1, 34, 2),
        (9, 0, 5, 22, 1);
+
 -----prices-----
+
 INSERT INTO PRICES (id, price, sector_types_id)
 VALUES (0, 15, 0),
        (1, 50, 1),
        (2, 100, 2);
+
+----------customers---------
+INSERT INTO CUSTOMER (id,name,balance,birth_date,created,deleted,updated) VALUES
+ (0,'Sergio',240,'1990-01-01',null,null,null),
+ (1,'Vladymyr',40,'1991-05-01',null,null,null),
+ (2,'Ruslan',140,'2000-02-01',null,null,null),
+ (3,'Alexandr',100,'1987-02-01',null,null,null),
+ (4,'Yulia',2400,'1988-03-02',null,null,null),
+ (5,'Olga',1000,'1955-01-01',null,null,null),
+ (6,'Kateryna',30,'1990-02-01',null,null,null);
