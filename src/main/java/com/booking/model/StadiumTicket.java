@@ -7,23 +7,20 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
-@Table(name = "sectors")
 @Entity
-@NoArgsConstructor
+@Table(name = "stadium_ticket")
 @Getter
 @Setter
+@NoArgsConstructor
 @Data
-public class Sector {
-
+class StadiumTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private int seatNumber;
-    private int rowNumber;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sector_type_id", referencedColumnName = "id")
-    private SectorType sectorType;
-    private boolean isBooked;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "sector_id")
+    private Sector sector;
 }

@@ -18,7 +18,7 @@ VALUES (1, 0, 5, 34, 0),
 
 -----prices-----
 
-INSERT INTO PRICES (id, price, sector_types_id)
+INSERT INTO RATE (id, price, sector_type_id)
 VALUES (0, 15, 0),
        (1, 50, 1),
        (2, 100, 2);
@@ -32,3 +32,10 @@ INSERT INTO CUSTOMER (id,name,balance,birth_date,created,deleted,updated) VALUES
  (4,'Yulia',2400,'1988-03-02',null,null,null),
  (5,'Olga',1000,'1955-01-01',null,null,null),
  (6,'Kateryna',30,'1990-02-01',null,null,null);
+
+ ------stadiumTicket---------
+ INSERT INTO STADIUM_TICKET(id,customer_id,sector_id) VALUES
+    (0,2,5),
+    (1,4,2),
+    (2,1,9),
+    (3,6,7);

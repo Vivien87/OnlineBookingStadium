@@ -25,4 +25,8 @@ public class SectorType {
     @OneToOne(mappedBy = "sectorType", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private Sector sector;
+
+    @OneToOne(mappedBy = "sectorType", targetEntity = RateSector.class)
+    private RateSector rateSector;
+
 }
