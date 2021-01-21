@@ -1,13 +1,16 @@
 package com.booking.model;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "rate")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class RateSector {
 
@@ -16,7 +19,9 @@ public class RateSector {
     private Long id;
     private Long price;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = SectorType.class)
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, targetEntity = SectorType.class)
+    @JoinColumn(name = "sector_type_id", referencedColumnName = "id")
     private SectorType sectorType;
 
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,9 +23,8 @@ public class SectorType {
     private String name;
     private String description;
 
-    @OneToOne(mappedBy = "sectorType", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
-    private Sector sector;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sectorType")
+    private List<Sector> sector;
 
     @OneToOne(mappedBy = "sectorType", targetEntity = RateSector.class)
     private RateSector rateSector;

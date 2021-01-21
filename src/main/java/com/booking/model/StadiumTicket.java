@@ -1,6 +1,5 @@
 package com.booking.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
-class StadiumTicket {
+public class StadiumTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
