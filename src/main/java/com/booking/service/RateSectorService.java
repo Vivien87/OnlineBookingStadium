@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface RateSectorService {
-   List<RateSector> getAllPrices();
+    List<RateSector> getAllPrices();
 
-   Long create(Long id, Long sectorId);
+    Long create(Long id, Long sectorId);
 }

@@ -2,6 +2,7 @@ package com.booking.service.impl;
 
 import com.booking.dao.SectorRepository;
 import com.booking.exception.CommonException;
+import com.booking.filter.SectorFilter;
 import com.booking.model.Sector;
 import com.booking.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,24 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public void bookingSector(Long id) {
+    public Sector find(SectorFilter filter) {
+        if (filter == null || filter.getId() == null || filter.getSeatNumber() < 0 || filter.getSeatNumber() < 0) {
+            throw new CommonException("filter is empty");
+        }
+        Optional<Sector> sector;
+        if (filter.getId() != null) {
+            sector = sectorRepository.findById(filter.getId());
+        } else {
+            sector = sectorRepository.findByRowAndSeatNumber(filter.getRowNumber(), filter.getSeatNumber());
+        }
+        if (sector.isPresent()) {
+            return sector.get();
+        }
+        throw new CommonException("can not find sector");
+    }
+
+    @Override
+    public void setBooked(Long id) {
+        sectorRepository.setBookedById(id);
     }
 }

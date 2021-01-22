@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class StadiumTicket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
@@ -22,3 +22,4 @@ public class StadiumTicket {
     @JoinColumn(name = "sector_id")
     private Sector sector;
 }
+

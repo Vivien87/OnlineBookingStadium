@@ -1,15 +1,16 @@
 package com.booking.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @Table(name = "sectors")
 @Entity
-
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Sector {
 
     @Id
