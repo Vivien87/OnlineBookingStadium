@@ -17,4 +17,10 @@ public class RateSectorServiceImpl implements RateSectorService {
     public List<RateSector> getAllPrices() {
         return rateSectorRepository.findAll();
     }
+
+    @Override
+    public Long create(Long id, Long sectorId) {
+        RateSector rate = new RateSector();
+        return rateSectorRepository.save(rate).getId();
+    }
 }

@@ -1,12 +1,16 @@
 package com.booking.service.impl;
 
 import com.booking.dao.SectorRepository;
+import com.booking.exception.CommonException;
 import com.booking.model.Sector;
 import com.booking.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SectorServiceImpl implements SectorService {
@@ -16,6 +20,30 @@ public class SectorServiceImpl implements SectorService {
     @Override
     public List<Sector> getAllSectors() {
         List<Sector> sectors = sectorRepository.findAll();
-        return sectors;
+        return CollectionUtils.isEmpty(sectors) ? new ArrayList<>() : sectors;
+    }
+
+    @Override
+    public List<Sector> findAllFreePlace() {
+        List<Sector> freeSectors = sectorRepository.findAllFreePlace();
+        return CollectionUtils.isEmpty(freeSectors) ? new ArrayList<>() : freeSectors;
+    }
+
+    @Override
+    public boolean isAvailable(Long id) {
+        return sectorRepository.isAvailable(id);
+    }
+
+    @Override
+    public Sector findById(Long id) {
+        Optional<Sector> sector = sectorRepository.findById(id);
+        if (!sector.isPresent()) {
+            throw new CommonException("not found sector id by " + id);
+        }
+        return sector.get();
+    }
+
+    @Override
+    public void bookingSector(Long id) {
     }
 }
