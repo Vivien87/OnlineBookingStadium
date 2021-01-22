@@ -1,16 +1,15 @@
 package com.booking.resource;
 
 import com.booking.exception.CommonException;
-import com.booking.model.RateSector;
-import com.booking.service.RateSectorService;
+import com.booking.filter.SectorStadiumFilter;
 import com.booking.service.SectorService;
 import com.booking.service.StadiumTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/book")
@@ -21,21 +20,13 @@ public class StadiumTicketResource {
     @Autowired
     private StadiumTicketService stadiumTicketService;
 
-    @PostMapping("/{sectorId}/customer/{id}")
-    public ResponseEntity<Long> bookedBySectorId(@PathVariable Long sectorId, @PathVariable Long id) {
-        if(!sectorService.isAvailable(sectorId)){
-            throw new CommonException("Sector by " + sectorId + " is not available");
+    @PostMapping()
+    public ResponseEntity<Long> reservatById(SectorStadiumFilter filter) {
+
+        if(!sectorService.isAvailable(filter.getSectorId())){
+            throw new CommonException("Sector by " + filter.getSectorId() + " is not available");
         }
-        Long createdId = stadiumTicketService.create(id, sectorId);
+        Long createdId = stadiumTicketService.create(filter);
         return new ResponseEntity<>(createdId, HttpStatus.OK);
     }
-
-//    @PostMapping("/{sectorId}/customer/{id}")
-//    public ResponseEntity<Long> bookedBySectorId(@PathVariable Long sectorId, @PathVariable Long id) {
-//        if(!sectorService.isAvailable(sectorId)){
-//            throw new CommonException("Sector by " + sectorId + " is not available");
-//        }
-//        Long createdId = stadiumTicketService.create(id, sectorId);
-//        return new ResponseEntity<>(createdId, HttpStatus.OK);
-//    }
 }
