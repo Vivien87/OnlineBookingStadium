@@ -18,7 +18,7 @@ public class CustomerResourceTest extends BaseTest {
                 jdbcTemplate.queryForObject("SELECT COUNT(*) FROM CUSTOMER", Integer.class);
         MvcResult res =
                 mockMvc
-                        .perform(MockMvcRequestBuilders.get("/customers"))
+                        .perform(MockMvcRequestBuilders.get("/api/v1/customers"))
                         .andDo(MockMvcResultHandlers.print()) // print more info
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andReturn();

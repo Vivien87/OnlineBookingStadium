@@ -21,7 +21,7 @@ public class SectorResourceTest extends BaseTest {
                 jdbcTemplate.queryForObject("SELECT COUNT(*) FROM SECTORS", Integer.class);
         MvcResult res =
                 mockMvc
-                        .perform(MockMvcRequestBuilders.get("/sectors/all"))
+                        .perform(MockMvcRequestBuilders.get("/api/v1/sectors"))
                         .andDo(MockMvcResultHandlers.print()) // print more info
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andReturn();
@@ -33,7 +33,7 @@ public class SectorResourceTest extends BaseTest {
     }
 
     @Test
-    public void getSectorById_from_db_and_api_and_equal() throws Exception {
+    public void getSectorById_Ok() throws Exception {
         Long id = 2L;
         Sector sectorActual =
                 jdbcTemplate.queryForObject("SELECT * FROM SECTORS WHERE id= ?", new RowMapper<Sector>() {
@@ -49,7 +49,7 @@ public class SectorResourceTest extends BaseTest {
                 }, new Object[]{id});
         MvcResult res =
                 mockMvc
-                        .perform(MockMvcRequestBuilders.get("/sectors/" + id))
+                        .perform(MockMvcRequestBuilders.get("/api/v1/sectors/" + id))
                         .andDo(MockMvcResultHandlers.print())
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andReturn();
@@ -62,12 +62,12 @@ public class SectorResourceTest extends BaseTest {
     }
 
     @Test
-    public void get_all_sectors_available_OK() throws Exception {
+    public void getAllSectorAvailable_Ok() throws Exception {
         int sectorIsAvailableActual =
                 jdbcTemplate.queryForObject("SELECT COUNT(*) FROM SECTORS WHERE is_booked= false", Integer.class);
         MvcResult res =
                 mockMvc
-                        .perform(MockMvcRequestBuilders.get("/sectors/available"))
+                        .perform(MockMvcRequestBuilders.get("/api/v1/sectors/available"))
                         .andDo(MockMvcResultHandlers.print())
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andReturn();

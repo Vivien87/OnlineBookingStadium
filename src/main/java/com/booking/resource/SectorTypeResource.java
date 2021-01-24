@@ -15,7 +15,7 @@ public class SectorTypeResource {
     @Autowired
     SectorTypeService sectorTypeService;
 
-    @GetMapping("/types")
+    @GetMapping("/api/v1/sectors/types")
     public ResponseEntity<List<SectorType>> getAllSectorTypes() {
         return new ResponseEntity<>(sectorTypeService.getAllSectorTypes(), HttpStatus.OK);
     }

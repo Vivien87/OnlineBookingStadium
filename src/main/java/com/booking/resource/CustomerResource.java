@@ -15,7 +15,7 @@ public class CustomerResource {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping("/api/v1/customers")
     public ResponseEntity<List<Customer>> getAllCusomers() {
         return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }

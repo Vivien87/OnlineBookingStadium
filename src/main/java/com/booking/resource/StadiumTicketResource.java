@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/book")
 public class StadiumTicketResource {
     @Autowired
     private SectorService sectorService;
@@ -20,10 +19,10 @@ public class StadiumTicketResource {
     @Autowired
     private StadiumTicketService stadiumTicketService;
 
-    @PostMapping()
+    @PostMapping("/api/v1/stadium/booking")
     public ResponseEntity<Long> reservatById(SectorStadiumFilter filter) {
 
-        if(!sectorService.isAvailable(filter.getSectorId())){
+        if (!sectorService.isAvailable(filter.getSectorId())) {
             throw new CommonException("Sector by " + filter.getSectorId() + " is not available");
         }
         Long createdId = stadiumTicketService.create(filter);

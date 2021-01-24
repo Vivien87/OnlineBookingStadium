@@ -18,7 +18,7 @@ public class SectorTypeResourceTest extends BaseTest {
                 jdbcTemplate.queryForObject("SELECT COUNT(*) FROM SECTOR_TYPE", Integer.class);
         MvcResult res =
                 mockMvc
-                        .perform(MockMvcRequestBuilders.get("/types"))
+                        .perform(MockMvcRequestBuilders.get("/api/v1/sectors/types"))
                         .andDo(MockMvcResultHandlers.print()) // print more info
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andReturn();
